@@ -1,6 +1,6 @@
 [gd_scene load_steps=37 format=3 uid="uid://cs6p5hn1kvp3i"]
 
-[ext_resource type="PackedScene" uid="uid://cb0apwpkrwh1t" path="res://classroom.glb" id="1_ysqh3"]
+[ext_resource type="PackedScene" uid="uid://vkim574clxho" path="res://classroom.glb" id="1_ysqh3"]
 [ext_resource type="PackedScene" uid="uid://drqr5y1nhal0l" path="res://player.tscn" id="2_2hgm5"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2hgm5"]
