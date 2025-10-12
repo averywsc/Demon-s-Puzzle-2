@@ -1,7 +1,9 @@
 extends Node2D
 
 @onready var buttons = $GridContainer.get_children()
-
+@onready var menu = $Menu
+@onready var label:Label = $Menu/ResultLabel
+@onready var word_label:Label = $Menu/WordLabel
 const SIZE = 5
 
 var wordle:String = ""
@@ -11,10 +13,12 @@ var row_filled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	init_button_styles()
 	reset_game()
 
 func _input(event):
+	#Don't start game till menu is visiable
+	if menu.visible:
+		return
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode >= KEY_A and event.keycode <= KEY_Z:
 			var letter = char(event.keycode)
@@ -40,23 +44,23 @@ func _input(event):
 			row_filled = false
 
 func reset_game():
+	word_label.text = ""
+	label.text = ""
 	wordle = get_random_wordle()
 	print("Wordle: ", wordle)
 	for button in buttons:
-		var b = button as Button
-		b.text = ""
+		init_button_styles(button)
 
-func init_button_styles():
-	for button in buttons:
-		var b = button as Button
-		var style = StyleBoxFlat.new()
-		style.bg_color = Color.BLACK
-		style.border_color = Color.DIM_GRAY
-		style.border_width_bottom = 2
-		style.border_width_top = 2
-		style.border_width_left = 2
-		style.border_width_right = 2
-		b.add_theme_stylebox_override("normal", style)
+func init_button_styles(b: Button):
+	b.text = ""
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color.BLACK
+	style.border_color = Color.DIM_GRAY
+	style.border_width_bottom = 2
+	style.border_width_top = 2
+	style.border_width_left = 2
+	style.border_width_right = 2
+	b.add_theme_stylebox_override("normal", style)
 
 func update_button_style(button:Button, bg_color):
 	var style = button.get_theme_stylebox("normal")
@@ -79,6 +83,16 @@ func check_win():
 	for button in buttons.slice(latest_row_index, latest_row_index + SIZE):
 		entered_text += button.text
 	print("Entered Text::", entered_text)
+	# Update miss match colour
+	var idx = 0
+	for button in buttons.slice(latest_row_index, latest_row_index + SIZE):
+		if entered_text[idx] == wordle[idx]:
+			update_button_style(button, Color.SEA_GREEN)
+		elif entered_text[idx] in wordle:
+			update_button_style(button, Color.CHOCOLATE)
+		elif entered_text[idx] not in wordle:
+			update_button_style(button, Color.CRIMSON)
+		idx += 1
 	# Colour row green
 	# Always color the row
 	for i in range(SIZE):
@@ -90,17 +104,11 @@ func check_win():
 		else:
 			update_button_style(button, Color.CRIMSON)
 	if entered_text == wordle:
-		print("You Win!")
-		return
-	else:
-		# Update miss match colour
-		var idx = 0
-		for button in buttons.slice(latest_row_index, latest_row_index + SIZE):
-			if entered_text[idx] == wordle[idx]:
-				update_button_style(button, Color.SEA_GREEN)
-			elif entered_text[idx] in wordle:
-				update_button_style(button, Color.CHOCOLATE)
-			elif entered_text[idx] not in wordle:
-				update_button_style(button, Color.CRIMSON)
-			idx += 1
-	
+		label.text = "You Win!"
+		word_label.text = "Correct word: " + entered_text
+		menu.show()
+
+
+func _on_button_pressed():
+	menu.hide()
+	reset_game()

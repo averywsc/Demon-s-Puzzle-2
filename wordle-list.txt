@@ -5,3 +5,7 @@ fruit
 bites
 train
 flame
+pizza
+bread
+joker
+chair
