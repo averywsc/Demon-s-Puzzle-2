@@ -5,7 +5,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3j5lm"]
 radius = 0.4
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 2.02112, 0, 0, 0, 1, 0, -0.0126561, 0)
 script = ExtResource("1_hqvp4")
 jump_velocity = 5.0

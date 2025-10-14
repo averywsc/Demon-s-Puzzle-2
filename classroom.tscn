@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://cs6p5hn1kvp3i"]
+[gd_scene load_steps=44 format=3 uid="uid://cs6p5hn1kvp3i"]
 
 [ext_resource type="PackedScene" uid="uid://cb0apwpkrwh1t" path="res://classroom.glb" id="1_ysqh3"]
 [ext_resource type="PackedScene" uid="uid://drqr5y1nhal0l" path="res://player.tscn" id="2_2hgm5"]
+[ext_resource type="PackedScene" uid="uid://d2sma884bm5l1" path="res://enemy.tscn" id="3_wx4mr"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2hgm5"]
 data = PackedVector3Array(1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1)
@@ -104,6 +105,27 @@ data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1,
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fslkb"]
 data = PackedVector3Array(-1, -1.0001, 0.9999, -1, 1, -1.0001, -1, 1, 0.9999, -1, -1.0001, 0.9999, -1, -1.0001, -1.0001, -1, 1, -1.0001, -1, -1.0001, -1.0001, 1, 1, -1.0001, -1, 1, -1.0001, -1, -1.0001, -1.0001, 1, -1.0001, -1.0001, 1, 1, -1.0001, 1, -1.0001, -1.0001, 1, 1, 0.9999, 1, 1, -1.0001, 1, -1.0001, -1.0001, 1, -1.0001, 0.9999, 1, 1, 0.9999, 1, -1.0001, 0.9999, -1, 1, 0.9999, 1, 1, 0.9999, 1, -1.0001, 0.9999, -1, -1.0001, 0.9999, -1, 1, 0.9999, -1, -1.0001, -1.0001, 1, -1.0001, 0.9999, 1, -1.0001, -1.0001, -1, -1.0001, -1.0001, -1, -1.0001, 0.9999, 1, -1.0001, 0.9999, 1, 1, -1.0001, -1, 1, 0.9999, -1, 1, -1.0001, 1, 1, -1.0001, 1, 1, 0.9999, -1, 1, 0.9999, -1, -5.04, 7.17, -1, 0.2285, -7.17, -1, 0.2285, 7.17, -1, -5.04, 7.17, -1, -5.04, -7.17, -1, 0.2285, -7.17, -1, -5.04, -7.17, 1, 0.2285, -7.17, -1, 0.2285, -7.17, -1, -5.04, -7.17, 1, -5.04, -7.17, 1, 0.2285, -7.17, 1, -5.04, -7.17, 1, 0.2285, 7.17, 1, 0.2285, -7.17, 1, -5.04, -7.17, 1, -5.04, 7.17, 1, 0.2285, 7.17, 1, -5.04, 7.17, -1, 0.2285, 7.17, 1, 0.2285, 7.17, 1, -5.04, 7.17, -1, -5.04, 7.17, -1, 0.2285, 7.17, -1, -5.04, -7.17, 1, -5.04, 7.17, 1, -5.04, -7.17, -1, -5.04, -7.17, -1, -5.04, 7.17, 1, -5.04, 7.17, 1, 0.2285, -7.17, -1, 0.2285, 7.17, -1, 0.2285, -7.17, 1, 0.2285, -7.17, 1, 0.2285, 7.17, -1, 0.2285, 7.17)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2hgm5"]
+
+[sub_resource type="Sky" id="Sky_2hgm5"]
+sky_material = SubResource("ProceduralSkyMaterial_2hgm5")
+
+[sub_resource type="Environment" id="Environment_wx4mr"]
+background_mode = 2
+background_energy_multiplier = 1.2
+sky = SubResource("Sky_2hgm5")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2hgm5"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7pr0m"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_wnraa"]
+vertices = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1)
+polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
 
 [node name="classroom" instance=ExtResource("1_ysqh3")]
 
@@ -278,7 +300,22 @@ shape = SubResource("ConcavePolygonShape3D_1j5ya")
 shape = SubResource("ConcavePolygonShape3D_fslkb")
 
 [node name="player" parent="." index="34" instance=ExtResource("2_2hgm5")]
-transform = Transform3D(0.999983, 0.0117113, 0, -0.00579446, 2.02109, 0, 0, 0, 1, -1.82, 4.33236, 6.33074)
+transform = Transform3D(-0.0450908, 0.001979, 0.998982, 0.0217102, 2.02065, 0, -0.998747, 0.0438344, -0.0451014, 9.93989, 7.25953, 0.810906)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="35"]
-transform = Transform3D(0.100171, 0, 0.99497, -0.649753, 0.757326, 0.0654152, -0.753517, -0.653037, 0.0758619, 16.3715, 6.10793, -2.51804)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="35"]
+environment = SubResource("Environment_wx4mr")
+
+[node name="floor" type="MeshInstance3D" parent="." index="36"]
+transform = Transform3D(11.7348, 0, 0, 0, 1, 0, 0, 0, 9.89312, -0.289736, 0.0385065, 0.0322757)
+mesh = SubResource("PlaneMesh_2hgm5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_7pr0m")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="floor" index="1"]
+navigation_mesh = SubResource("NavigationMesh_wnraa")
+
+[node name="enemy" parent="." index="37" instance=ExtResource("3_wx4mr")]
+transform = Transform3D(1, 0, 0, 0, 2.97294, 0, 0, 0, 1, -5.10229, 4.89713, -1.04475)
