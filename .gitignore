@@ -12,6 +12,7 @@
 
 # Godot’s hidden cache folder – never push this!
 .godot/
+*.godot
 .godot3/
 # Stores texture/audio imports (auto-generated)
 .import/
