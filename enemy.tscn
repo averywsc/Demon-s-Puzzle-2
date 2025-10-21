@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0yik8wpimcvp"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="PackedScene" uid="uid://18kxjp8b08q2" path="res://teacher.glb" id="1_qyres"]
+
+[node name="teacher" instance=ExtResource("1_qyres")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86335, 0)
+script = ExtResource("1_7k104")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.78241, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(3.55271e-15, -1.19209e-07, 1.26218e-28, 1)
+bones/3/rotation = Quaternion(0.901403, -0.0343521, -0.0151615, -0.43135)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.0863159, 0.00243367, -0.0284946, 0.995857)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(-0.0531326, -0.00258933, -0.0299298, 0.998135)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.0266358, 1.46424e-08, -0.0607391, 0.997798)
+bones/7/rotation = Quaternion(0.99999, 5.42712e-10, 1.19208e-07, -0.0045526)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(-0.0045526, -7.10637e-15, 1.89694e-16, 0.99999)
+bones/9/rotation = Quaternion(0.90877, 0.00929476, -0.00421185, 0.417173)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.0926721, 0.00116364, 0.00646591, 0.995675)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(0.0551628, 8.12173e-05, 0.00638973, 0.998457)
+bones/12/rotation = Quaternion(-0.0342989, 3.3839e-08, 0.00511527, 0.999399)
+bones/13/rotation = Quaternion(0.99999, -1.15488e-10, 2.38417e-07, 0.0045526)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.0045526, -5.57711e-13, 9.69936e-10, 0.99999)
+bones/15/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_4gyqm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_qi2p4")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[node name="hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+transform = Transform3D(1.28306, 0, 0, 0, 1.17367, 0, 0, 0, 1.12458, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_iifgy")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

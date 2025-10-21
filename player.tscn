@@ -5,16 +5,17 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3j5lm"]
 radius = 0.4
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 2.02112, 0, 0, 0, 1, 0, -0.0126561, 0)
 script = ExtResource("1_hqvp4")
-jump_velocity = 5.0
-
-[node name="head" type="Node3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01989, 0)
 shape = SubResource("CapsuleShape3D_3j5lm")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.494775, 0, 0, 0, 1, 0, 2.10165, 0)
+
+[node name="head" type="Node3D" parent="."]
